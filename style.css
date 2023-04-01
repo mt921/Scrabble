@@ -26,8 +26,10 @@ body
     color: var(--colour-3);
     font-weight: 500;
     font-size: 0.8rem;
-    min-width: 750px;
-    min-height: 600px;
+    min-width: 1230px;
+    max-width: 1230px;
+    min-height: 700px;
+    max-height: 700px;
 }
 
 .title-card
@@ -138,7 +140,7 @@ body
     border-radius: 10px;
     padding-left: 15px;
     padding-top: 1px;
-    height: 28%;
+    height: 29%;
     margin: 10px;
 }
 
