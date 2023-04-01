@@ -69,18 +69,19 @@ body
     flex-direction: column;
     justify-content: center;
     height: 100%;
-    width: 60%;
+    width: 55%;
 }
 
 .grid-card
 {
+    aspect-ratio : 1 / 1;
+    max-width: 420px;
     border-style: solid;
     border-color: #4155F8;
     border-width: 8px;
     border-radius: 10px;
-    aspect-ratio : 1 / 1;
     background-color: var(--colour-4);
-    height: 90%;
+    
     margin: 15px;
     margin-right: 5px;
 }
@@ -89,6 +90,7 @@ body
 {
     background-color: var(--colour-3);
     height: 10%;
+    max-width: 435px;
     margin-left: 15px;
     margin-right: 5px;
 }
