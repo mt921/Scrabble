@@ -32,7 +32,7 @@ body
     max-height: 700px;
 }
 
-.title-card
+header
 {
     font-family: 'Montserrat';
     display: flex;
@@ -88,7 +88,7 @@ body
     margin-right: 5px;
 }
 
-.tile-deck
+footer
 {
     background-color: var(--colour-3);
     height: 10%;
@@ -97,7 +97,7 @@ body
     margin-right: 5px;
 }
 
-.column-2
+aside
 {
     height: 100%;
     width: 40%;
@@ -149,7 +149,7 @@ body
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 30%;
+    height: 25%;
     margin-right: 10px;
     margin-top: 10px;
 }
