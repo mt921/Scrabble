@@ -170,6 +170,22 @@ aside
 
 }
 
+.row
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.cell
+{
+    aspect-ratio: 1/1;
+    background-color: red;
+    display: inline-block;
+    position: relative;
+    width: calc(100%/3);
+    margin: 5px;
+}
+
 .display
 {
     display: flex;
