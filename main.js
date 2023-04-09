@@ -1,3 +1,15 @@
+board = [
+    [0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0],
+    [0,0,"S","T","A","R","T",0,0],
+    [0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0],
+  ];
+
 function makeGrid() {
     let tbl = document.getElementById("grid");
     for(let i=0;i<9;i++){
@@ -10,7 +22,7 @@ function makeGrid() {
             let myCell = document.createElement("td");
             myCell.id = [i,j]
             myCell.className ="cell"
-            myCell.textContent = `${[i,j]}`;
+            myCell.textContent = `${board[i][j]}`;
             rowW.appendChild(myCell);
         }
     }
