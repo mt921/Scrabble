@@ -10,6 +10,7 @@ function makeGrid() {
             let myCell = document.createElement("td");
             myCell.id = [i,j]
             myCell.className ="cell"
+            myCell.textContent = `${[i,j]}`;
             rowW.appendChild(myCell);
         }
     }
