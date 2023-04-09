@@ -3,6 +3,8 @@
 {
     --back-colour-1: #B6D3FF;
     --back-colour-2: #94BFFF;
+    --tile-colour-1: #5366FF;
+    --tile-colour-2: #7584FF;
     --colour-2: #5669FF;
     --colour-3: #4155F8;
     --colour-4: #f6f7ff;
@@ -101,7 +103,7 @@ header
 footer
 {
     /* background-color: var(--colour-3); */
-    height: 15%;
+    height: 18%;
     max-width: 435px;
     margin-left: 15px;
     margin-right: 5px;
@@ -196,6 +198,33 @@ aside
     margin: 1px;
     line-height: 40px;
     text-align: center;
+}
+
+.cell.empty
+{
+    background-color: var(--colour-4);
+    color: var(--colour-4);
+}
+
+.cell.tile
+{
+    background-color: var(--tile-colour-2);
+    color: white;
+}
+
+.hand-cell
+{
+    aspect-ratio: 1/1;
+    background-color: var(--tile-colour-1);
+    color: white;
+    display: inline-block;
+    position: relative;
+    border-radius: 12px;
+    line-height: 60px;
+    width: calc(100%/3);
+    margin: 3px;
+    text-align: center;
+    font-size: 1.5em;
 }
 
 .display

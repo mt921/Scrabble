@@ -30,6 +30,14 @@ function makeGrid() {
             gridCell.id = [i,j]
             gridCell.className ="cell"
             gridCell.textContent = `${board[i][j]}`;
+            if (board[i][j] === 0) {
+                gridCell.classList.add("empty");
+                gridCell.classList.remove("tile");
+            }
+            if (board[i][j] !== 0) {
+                gridCell.classList.add("tile");
+                gridCell.classList.remove("empty");
+            }
             rowW.appendChild(gridCell);
         }
     }
@@ -43,7 +51,7 @@ function makeHand() {
     for(let m=0;m<7;m++){
         let handCell = document.createElement("td");
         handCell.id = [0,m];
-        handCell.className="cell";
+        handCell.className="hand-cell";
         handCell.textContent=`${hand1[m]}`;
         handRow.appendChild(handCell);
     }
