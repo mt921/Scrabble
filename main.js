@@ -1,12 +1,14 @@
 function makeGrid() {
     let tbl = document.getElementById("pixelCanvas");
-    for(let i=0;i<11;i++){
+    for(let i=0;i<9;i++){
         let myRow = document.createElement("tr");
         myRow.id = "row" + i;
+        myRow.className = "row"
         tbl.appendChild(myRow);
         let rowW = document.getElementById("row"+i);
-        for(let j=0; j<11;j++){
+        for(let j=0; j<9;j++){
             let myCell = document.createElement("td");
+            myCell.className ="cell"
             rowW.appendChild(myCell);
         }
     }

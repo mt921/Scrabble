@@ -7,6 +7,7 @@
     --colour-3: #4155F8;
     --colour-4: #f6f7ff;
     --colour-5: #789CF0;
+    --colour-6: #E9EBFF;
 }
 
 *
@@ -87,10 +88,14 @@ header
     border-color: #4155F8;
     border-width: 8px;
     border-radius: 10px;
-    background-color: var(--colour-4);
-    
+    background-color: var(--colour-6);
     margin: 15px;
     margin-right: 5px;
+}
+
+.grid2
+{
+    width: 100%;
 }
 
 footer
@@ -184,11 +189,11 @@ aside
 .cell
 {
     aspect-ratio: 1/1;
-    background-color: red;
+    background-color: var(--colour-4);
     display: inline-block;
     position: relative;
     width: calc(100%/3);
-    margin: 5px;
+    margin: 1px;
 }
 
 .display
