@@ -10,6 +10,11 @@ board = [
     [0,0,0,0,0,0,0,0,0],
   ];
 
+hand1 = ["A","B","C","D","E","F","G"];
+hand2 = ["A","B","C","D","E","F","G"];
+player1Score = 10;
+player2Score = 5;
+
 function makeGrid() {
     let gridTbl = document.getElementById("grid");
     for(let i=0;i<9;i++){
@@ -37,7 +42,7 @@ function makeHand() {
         let handCell = document.createElement("td");
         handCell.id = [0,m];
         handCell.className="cell";
-        handCell.textContent=`${[0,m]}`;
+        handCell.textContent=`${hand1[m]}`;
         handRow.appendChild(handCell);
     }
 }
