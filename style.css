@@ -194,6 +194,8 @@ aside
     position: relative;
     width: calc(100%/3);
     margin: 1px;
+    line-height: 40px;
+    text-align: center;
 }
 
 .display

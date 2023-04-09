@@ -1,3 +1,5 @@
+// import Scrabble from "./scrabble.js";
+
 board = [
     [0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0],

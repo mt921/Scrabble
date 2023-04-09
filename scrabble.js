@@ -1,2 +1,3 @@
-//A list of functions to enable gameplay
+const Scrabble = Object.create(null);
+
 
