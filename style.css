@@ -80,7 +80,7 @@ header
     width: 55%;
 }
 
-.grid
+.grid-card
 {
     aspect-ratio : 1 / 1;
     max-width: 420px;
@@ -93,7 +93,7 @@ header
     margin-right: 5px;
 }
 
-.grid2
+.grid
 {
     width: 100%;
 }
