@@ -15,4 +15,4 @@ Scrabble.createGame = function () {
     }
 };
 
-export default Object.freeze(Scrabble);
+export const apple = 8;

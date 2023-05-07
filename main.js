@@ -1,6 +1,6 @@
-// import Scrabble from "./scrabble.js";
+import {apple} from "./scrabble.js";
 
-board = [
+const board = [
     [0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0],
@@ -8,14 +8,14 @@ board = [
     [0,0,"S","T","A","R","T",0,0],
     [0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
+    [apple,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0],
   ];
 
-hand1 = ["A","B","C","D","E","F","G"];
-hand2 = ["A","B","C","D","E","F","G"];
-player1Score = 10;
-player2Score = 5;
+const hand1 = ["A","B","C","D","E","F","G"];
+const hand2 = ["A","B","C","D","E","F","G"];
+const player1Score = 10;
+const player2Score = 5;
 
 function makeGrid() {
     let gridTbl = document.getElementById("grid");
