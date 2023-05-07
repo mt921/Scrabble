@@ -1,4 +1,4 @@
-import {apple} from "./scrabble.js";
+import Scrabble from "./scrabble.js";
 
 const board = [
     [0,0,0,0,0,0,0,0,0],
@@ -8,7 +8,7 @@ const board = [
     [0,0,"S","T","A","R","T",0,0],
     [0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0],
-    [apple,0,0,0,0,0,0,0,0],
+    [Scrabble.apple,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0],
   ];
 
