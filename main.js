@@ -8,7 +8,7 @@ const board = [
     [0,0,"S","T","A","R","T",0,0],
     [0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0],
-    [Scrabble.apple,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0],
   ];
 
@@ -16,6 +16,23 @@ const hand1 = ["A","B","C","D","E","F","G"];
 const hand2 = ["A","B","C","D","E","F","G"];
 const player1Score = 10;
 const player2Score = 5;
+
+function updateGrid() {
+    for(let i=0;i<9;i++){
+        for(let j=0; j<9;j++){
+            let gridCell = document.getElementById([i,j]);
+            gridCell.textContent = `${board[i][j]}`;
+            if (board[i][j] === 0) {
+                gridCell.classList.add("empty");
+                gridCell.classList.remove("tile");
+            }
+            if (board[i][j] !== 0) {
+                gridCell.classList.add("tile");
+                gridCell.classList.remove("empty");
+            }
+        }
+    }
+}
 
 function makeGrid() {
     let gridTbl = document.getElementById("grid");
@@ -29,6 +46,10 @@ function makeGrid() {
             let gridCell = document.createElement("td");
             gridCell.id = [i,j]
             gridCell.className ="cell"
+            gridCell.onclick = function() {
+                board[i][j]="A";
+                updateGrid();
+            }
             gridCell.textContent = `${board[i][j]}`;
             if (board[i][j] === 0) {
                 gridCell.classList.add("empty");
