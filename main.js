@@ -62,6 +62,7 @@ function makeGrid() {
             gridCell.onclick = function() {
                 if (tileSelected !==false) {
                     board[i][j]=tileSelected;
+                    tileSelected = false;
                     updateGrid();
                 }
             }
@@ -81,9 +82,11 @@ function makeHand() {
         handCell.textContent=`${hand1[m]}`;
         handRow.appendChild(handCell);
         handCell.onclick = function() {
-            tileSelected = hand1[m];
-            hand1[m]="0";
-            handCell.textContent=`${hand1[m]}`;
+            if (!tileSelected && hand1[m] !="") {
+                tileSelected = hand1[m];
+                hand1[m]="";
+                handCell.textContent=`${hand1[m]}`;
+            }
         }
     }
 }
