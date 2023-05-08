@@ -227,6 +227,11 @@ aside
     font-size: 1.5em;
 }
 
+.hand-cell.empty
+{
+    background-color: transparent;
+}
+
 .display
 {
     display: flex;

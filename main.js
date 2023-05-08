@@ -86,6 +86,7 @@ function makeHand() {
                 tileSelected = hand1[m];
                 hand1[m]="";
                 handCell.textContent=`${hand1[m]}`;
+                handCell.classList.add("empty");
             }
         }
     }
