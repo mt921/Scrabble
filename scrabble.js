@@ -25,6 +25,4 @@ Scrabble.createGame = function () {
     }
 };
 
-Scrabble.apple = 10;
-
 export default Object.freeze(Scrabble)

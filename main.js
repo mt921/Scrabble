@@ -17,6 +17,9 @@ const hand2 = ["A","B","C","D","E","F","G"];
 const player1Score = 10;
 const player2Score = 5;
 
+//placeholder values
+let tileSelected = false;
+
 function updateGrid() {
     for(let i=0;i<9;i++){
         for(let j=0; j<9;j++){
@@ -46,10 +49,6 @@ function makeGrid() {
             let gridCell = document.createElement("td");
             gridCell.id = [i,j]
             gridCell.className ="cell"
-            gridCell.onclick = function() {
-                board[i][j]="A";
-                updateGrid();
-            }
             gridCell.textContent = `${board[i][j]}`;
             if (board[i][j] === 0) {
                 gridCell.classList.add("empty");
@@ -60,6 +59,12 @@ function makeGrid() {
                 gridCell.classList.remove("empty");
             }
             rowW.appendChild(gridCell);
+            gridCell.onclick = function() {
+                if (tileSelected !==false) {
+                    board[i][j]=tileSelected;
+                    updateGrid();
+                }
+            }
         }
     }
 }
@@ -71,10 +76,15 @@ function makeHand() {
     handTbl.appendChild(handRow);
     for(let m=0;m<7;m++){
         let handCell = document.createElement("td");
-        handCell.id = [0,m];
+        handCell.id = ["h",m];
         handCell.className="hand-cell";
         handCell.textContent=`${hand1[m]}`;
         handRow.appendChild(handCell);
+        handCell.onclick = function() {
+            tileSelected = hand1[m];
+            hand1[m]="0";
+            handCell.textContent=`${hand1[m]}`;
+        }
     }
 }
 
