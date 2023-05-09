@@ -1,21 +1,6 @@
 import Scrabble from "./scrabble.js";
 
-const board = [
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,"S","T","A","R","T",0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-  ];
-
-const hand1 = ["A","B","C","D","E","F","G"];
-const hand2 = ["A","B","C","D","E","F","G"];
-const player1Score = 10;
-const player2Score = 5;
+let gameState = Scrabble.createGame();
 
 //placeholder values
 let tileSelected = false;
@@ -24,12 +9,12 @@ function updateGrid() {
     for(let i=0;i<9;i++){
         for(let j=0; j<9;j++){
             let gridCell = document.getElementById([i,j]);
-            gridCell.textContent = `${board[i][j]}`;
-            if (board[i][j] === 0) {
+            gridCell.textContent = `${gameState["board"][i][j]}`;
+            if (gameState["board"][i][j] === 0) {
                 gridCell.classList.add("empty");
                 gridCell.classList.remove("tile");
             }
-            if (board[i][j] !== 0) {
+            if (gameState["board"][i][j] !== 0) {
                 gridCell.classList.add("tile");
                 gridCell.classList.remove("empty");
             }
@@ -49,19 +34,20 @@ function makeGrid() {
             let gridCell = document.createElement("td");
             gridCell.id = [i,j]
             gridCell.className ="cell"
-            gridCell.textContent = `${board[i][j]}`;
-            if (board[i][j] === 0) {
+            gridCell.textContent = `${gameState["board"][i][j]}`;
+            if (gameState["board"][i][j] === 0) {
                 gridCell.classList.add("empty");
                 gridCell.classList.remove("tile");
             }
-            if (board[i][j] !== 0) {
+            if (gameState["board"][i][j] !== 0) {
                 gridCell.classList.add("tile");
                 gridCell.classList.remove("empty");
             }
             rowW.appendChild(gridCell);
+            //user interaction (clicking functionality)
             gridCell.onclick = function() {
                 if (tileSelected !==false) {
-                    board[i][j]=tileSelected;
+                    gameState["board"][i][j]=tileSelected;
                     tileSelected = false;
                     updateGrid();
                 }
@@ -79,13 +65,14 @@ function makeHand() {
         let handCell = document.createElement("td");
         handCell.id = ["h",m];
         handCell.className="hand-cell";
-        handCell.textContent=`${hand1[m]}`;
+        handCell.textContent=`${gameState["hand1"][m]}`;
         handRow.appendChild(handCell);
+        //user interaction (clicking functionality)
         handCell.onclick = function() {
-            if (!tileSelected && hand1[m] !="") {
-                tileSelected = hand1[m];
-                hand1[m]="";
-                handCell.textContent=`${hand1[m]}`;
+            if (!tileSelected && gameState["hand1"][m] !="") {
+                tileSelected = gameState["hand1"][m];
+                gameState["hand1"][m]="";
+                handCell.textContent=`${gameState["hand1"][m]}`;
                 handCell.classList.add("empty");
             }
         }

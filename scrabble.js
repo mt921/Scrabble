@@ -2,7 +2,7 @@ const Scrabble = Object.create(null);
 
 Scrabble.createGame = function () {
     return {
-        "currentBoard" : [
+        "board" : [
             [0,0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0,0],
@@ -17,7 +17,7 @@ Scrabble.createGame = function () {
         "player2Score" : 0,
         "hand1" : ["A","B","C","D","E","F","G"],
         "hand2" : ["A","B","C","D","E","F","G"],
-        "current_bag" : Scrabble.create_new_bag(),
+        "current_bag" : ["A","B","C","D","E","F","G"],
         "current_orientation" : ["n",0],
         "current_move" : [],
         "move_started" : false,
