@@ -46,7 +46,7 @@ function makeGrid() {
             rowW.appendChild(gridCell);
             //user interaction (clicking functionality)
             gridCell.onclick = function() {
-                if (tileSelected !==false) {
+                if (tileSelected !==false && gameState["board"][i][j]===0) {
                     gameState["board"][i][j]=tileSelected;
                     tileSelected = false;
                     updateGrid();
