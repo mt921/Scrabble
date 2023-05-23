@@ -40,6 +40,15 @@ Scrabble.updateHand = function (gameState) {
     }
 };
 
-Scrabble.updateMove = function(gameState, move) {};
+Scrabble.checkMove = function(gameState) {
+    //check whether a move can be commited to the permanent board
+
+    //1 - check connections (there cannot be any gaps)
+
+    //2 - calculate number of words
+
+    //3 - validate words using dictionary
+
+};
 
 export default Object.freeze(Scrabble)

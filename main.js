@@ -22,6 +22,11 @@ function updateGrid() {
     }
 }
 
+function updateHistory() {
+    document.getElementById("history"
+    ).innerHTML = gameState["move"];
+};
+
 function makeGrid() {
     let gridTbl = document.getElementById("grid");
     for(let i=0;i<9;i++){
@@ -48,9 +53,10 @@ function makeGrid() {
             gridCell.onclick = function() {
                 if (tileSelected !==false && gameState["board"][i][j]===0) {
                     gameState["board"][i][j]=tileSelected;
-                    tileSelected = false;
                     gameState["move"].push([tileSelected, [i,j]]);
+                    tileSelected = false;
                     updateGrid();
+                    updateHistory();
                 }
             }
         }
