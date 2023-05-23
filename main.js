@@ -49,6 +49,7 @@ function makeGrid() {
                 if (tileSelected !==false && gameState["board"][i][j]===0) {
                     gameState["board"][i][j]=tileSelected;
                     tileSelected = false;
+                    gameState["move"].push([tileSelected, [i,j]]);
                     updateGrid();
                 }
             }
