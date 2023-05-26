@@ -40,6 +40,24 @@ Scrabble.updateHand = function (gameState) {
     }
 };
 
+Scrabble.removeBlanks = function(gameState){
+    let currentHand = gameState["hand1"];
+    let currentGameState = Object.assign({}, gameState);
+    const newHand = currentHand.filter(tile => tile != "");
+    currentGameState["hand1"] = newHand;
+    return currentGameState;
+}
+
+Scrabble.cancelMove = function(gameState) {
+    let currentHand = gameState["hand1"];
+    let newGameState = Object.assign({}, gameState);
+    originalMove = gameState["move"];
+    originalMove.forEach(element => currentHand.push(element));
+    newGameState["hand1"] = currentHand;
+    newGameState["move"] = [];
+    return newGameState;
+}
+
 Scrabble.checkMove = function(gameState) {
     //check whether a move can be commited to the permanent board
 

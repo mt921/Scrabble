@@ -1,9 +1,17 @@
 import Scrabble from "./scrabble.js";
 
 let gameState = Scrabble.createGame();
+const cancel = document.getElementById("cancel");
 
 //placeholder values
 let tileSelected = false;
+
+cancel.onclick = function() {
+    gameState = Scrabble.cancelMove(gameState);
+    updateHand();
+    updateGrid();
+    updateHistory();
+};
 
 function updateGrid() {
     for(let i=0;i<9;i++){
@@ -85,6 +93,8 @@ function makeHand() {
         }
     }
 }
+
+
 
 makeHand();
 makeGrid();
