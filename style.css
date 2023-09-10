@@ -206,9 +206,15 @@ aside
     color: var(--colour-4);
 }
 
-.cell.tile
+.cell.tile-locked
 {
     background-color: var(--tile-colour-2);
+    color: white;
+}
+
+.cell.tile-unlocked
+{
+    background-color: lightblue;
     color: white;
 }
 
