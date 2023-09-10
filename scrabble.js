@@ -23,7 +23,6 @@ Scrabble.createGame = function () {
         hand1 : ["A","B","C","D","E","F","G"],
         hand2 : ["A","B","C","D","E","F","G"],
         bag : ["A","B","C","D","E","F","G"],
-        current_orientation : ["n",0],
         move : [],
         move_started : false,
         history: []

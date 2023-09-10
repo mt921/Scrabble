@@ -31,8 +31,7 @@ function updateGrid() {
 }
 
 function updateHistory() {
-    document.getElementById("history"
-    ).innerHTML = gameState["move"];
+    document.getElementById("history").innerHTML = gameState["move"];
 };
 
 function makeGrid() {
