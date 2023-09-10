@@ -1,6 +1,7 @@
 import * as Scrabble from "./scrabble.js";
 
 let gameState = Scrabble.createGameState();
+console.log(gameState);
 
 //placeholder values
 let tileSelected = false;
@@ -21,8 +22,9 @@ function makeGrid() {
       gridCell.id = [i, j];
       gridCell.className = "cell";
       //identify the tile value within given board state
-      const gridValue = gameState.board[i][j].value;
-      const lockedState = gameState.board[i][j].lockedState;
+      const tile = gameState.board[i][j];
+      const gridValue = tile.value;
+      const lockedState = tile.lockedState;
       gridCell.textContent = `${gridValue}`;
       if (gridValue === 0) {
         gridCell.classList.add("empty");
@@ -33,15 +35,22 @@ function makeGrid() {
       gridCell.onclick = function () {
         //if the user is holding a tile allow them to place it
         if (tileSelected !== false && gridValue === 0) {
-          gameState.board[i][j].value = tileSelected;
+          gameState.board[i][j] = tileSelected;
+          console.log(tileSelected);
           tileSelected = false;
           updateGrid();
         }
         //if the user is not holding a tile allow them to pick up unlocked tiles
-        if (gridValue !== 0)  {
+        else if (
+          tileSelected === false &&
+          gameState.board[i][j].lockedState !== true
+        ) {
+          console.log(tile);
+          gameState.hand[tile.originalPosition] = "fixed";
           gameState.board[i][j].value = 0;
           gridCell.textContent = `${gridValue}`;
           tileSelected = false;
+          updateHand();
           updateGrid();
         }
       };
@@ -58,16 +67,19 @@ function makeHand() {
     let handCell = document.createElement("td");
     handCell.id = ["h", m];
     handCell.className = "hand-cell";
-    const handValue = gameState.hand[m].value;
-    handCell.textContent = `${handValue}`;
+    const tile = gameState.hand[m];
+    handCell.textContent = `${tile.value}`;
     handRow.appendChild(handCell);
     //user interaction (clicking functionality)
     handCell.onclick = function () {
-      if (!tileSelected && handValue != "") {
-        tileSelected = handValue;
-        gameState.hand[m].value = "";
-        handCell.textContent = `${gameState.hand[m].value}`;
-        handCell.classList.add("empty");
+      if (!tileSelected && tile.value != "") {
+        tileSelected = tile;
+        console.log(tileSelected);
+         gameState.hand[m].value = "";
+        
+        // handCell.textContent = `${gameState.hand[m].value}`;
+        // handCell.classList.add("empty");
+        updateHand();
       }
     };
   }
@@ -93,6 +105,19 @@ function updateGrid() {
         gridCell.classList.remove("tile-locked");
         gridCell.classList.remove("empty");
       }
+    }
+  }
+}
+
+function updateHand() {
+  for (let i = 0; i < 7; i++) {
+    let handCell = document.getElementById(["h", i]);
+    const handValue = gameState.hand[i].value;
+    handCell.textContent = `${handValue}`;
+    if (handValue === ""){
+        handCell.classList.add("empty");
+    } else {
+        handCell.classList.remove("empty");
     }
   }
 }

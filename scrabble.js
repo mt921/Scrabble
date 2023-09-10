@@ -21,7 +21,10 @@ function createBoard(rows, cols) {
 function createHand() {
   const hand = [];
   for (let i = 0; i < 7; i++) {
-    hand.push(new Tile("A"));
+    let tile = new Tile(1+i);
+    tile.originalPosition = i;
+    hand.push(tile);
+
   }
   return hand;
 }
