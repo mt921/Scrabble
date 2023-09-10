@@ -19,8 +19,8 @@
 
 body
 {
-    background-image: linear-gradient(145deg, var(--back-colour-1), var(--back-colour-2));
-    /* background: var(--colour-1); */
+    /* background-image: linear-gradient(145deg, var(--back-colour-1), var(--back-colour-2)); */
+    background: var(--back-colour-1);
     height: 100vh;
     width: 100%;
 
