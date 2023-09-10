@@ -1,45 +1,34 @@
-const Scrabble = Object.create(null);
+class Tile {
+  constructor(value) {
+    this.value = value;
+    this.originalPosition = undefined; //original position in player hand
+    this.lockedState = undefined; //whether the tile is locked to board
+  }
+}
 
-Scrabble.addLetters = function(bag,letter,num) {
-};
-
-Scrabble.createBag = function(){};
-
-Scrabble.createGame = function () {
-    return {
-        board : [
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,"S","T","A","R","T",0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-        ],
-        player1Score : 9,
-        player2Score : 0,
-        hand1 : ["A","B","C","D","E","F","G"],
-        hand2 : ["A","B","C","D","E","F","G"],
-        bag : ["A","B","C","D","E","F","G"],
-        current_orientation : ["n",0],
-        current_move : [],
-        move_started : false,
-        history: []
+function createBoard(rows, cols) {
+  const board = [];
+  for (let i = 0; i < rows; i++) {
+    const row = [];
+    for (let j = 0; j < cols; j++) {
+      row.push(new Tile(0));
     }
-};
+    board.push(row);
+  }
+  return board;
+}
 
-Scrabble.updateHand = function (gameState) {
-    //if either player has less than 7 letters update hand
-    if (gameState["hand1"].length < 7) {
+function createHand() {
+  const hand = [];
+  for (let i = 0; i < 7; i++) {
+    hand.push(new Tile("A"));
+  }
+  return hand;
+}
 
-    }
-    if (gameState["hand2"].length < 7) {
-
-    }
-};
-
-Scrabble.updateMove = function(gameState, move) {};
-
-export default Object.freeze(Scrabble)
+export function createGameState() {
+  return {
+    board: createBoard(9, 9),
+    hand: createHand(),
+  };
+}
