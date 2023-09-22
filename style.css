@@ -218,7 +218,7 @@ aside
     color: white;
 }
 
-.hand-cell
+.rack-cell
 {
     aspect-ratio: 1/1;
     background-color: var(--tile-colour-1);
@@ -233,7 +233,7 @@ aside
     font-size: 1.5em;
 }
 
-.hand-cell.empty
+.rack-cell.empty
 {
     background-color: transparent;
 }

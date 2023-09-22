@@ -1,8 +1,8 @@
 class Tile {
   constructor(value) {
     this.value = value;
-    this.originalPosition = undefined; //original position in player hand
-    this.lockedState = undefined; //whether the tile is locked to board
+    this.originalPosition = undefined; //original position on the rack
+    this.locked = undefined; //whether the tile is locked to board
   }
 }
 
@@ -18,20 +18,21 @@ function createBoard(rows, cols) {
   return board;
 }
 
-function createHand() {
-  const hand = [];
+function createRack() {
+  const rack = [];
   for (let i = 0; i < 7; i++) {
     let tile = new Tile(1+i);
     tile.originalPosition = i;
-    hand.push(tile);
+    rack.push(tile);
 
   }
-  return hand;
+  return rack;
 }
 
 export function createGameState() {
   return {
     board: createBoard(9, 9),
-    hand: createHand(),
+    rack: createRack(),
+    hand: undefined
   };
 }

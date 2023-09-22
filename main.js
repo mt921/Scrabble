@@ -3,103 +3,77 @@ import * as Scrabble from "./scrabble.js";
 let gameState = Scrabble.createGameState();
 console.log(gameState);
 
-//placeholder values
-let tileSelected = false;
-
-//NOTE: YOU COULD CONVERT STATE SO THAT IT LINKS TO THE CSS CLASSES
-//THEN YOU CAN ADD THE CLASSES BASED ON THE STATE?
-
 function makeGrid() {
   let gridTbl = document.getElementById("grid");
-  for (let i = 0; i < 9; i++) {
+
+  for (let x = 0; x < 9; x++) {
+
     let gridRow = document.createElement("tr");
-    gridRow.id = "row" + i;
+    gridRow.id = "row" + x;
     gridRow.className = "row";
     gridTbl.appendChild(gridRow);
-    let rowW = document.getElementById("row" + i);
-    for (let j = 0; j < 9; j++) {
+    let rowW = document.getElementById("row" + x);
+
+    for (let y = 0; y < 9; y++) {
       let gridCell = document.createElement("td");
-      gridCell.id = [i, j];
+      gridCell.id = [x, y];
       gridCell.className = "cell";
+
       //identify the tile value within given board state
-      const tile = gameState.board[i][j];
-      const gridValue = tile.value;
-      const lockedState = tile.lockedState;
-      gridCell.textContent = `${gridValue}`;
-      if (gridValue === 0) {
+      gridCell.textContent = `${gameState.board[x][y].value}`;
+
+      if (gameState.board[x][y].value === 0) {
         gridCell.classList.add("empty");
         gridCell.classList.remove("tile");
       }
+
       rowW.appendChild(gridCell);
+
       //user interaction (clicking functionality)
       gridCell.onclick = function () {
         //if the user is holding a tile allow them to place it
-        if (tileSelected !== false && gridValue === 0) {
-          gameState.board[i][j] = tileSelected;
-          console.log(tileSelected);
-          tileSelected = false;
-          updateGrid();
+        //if a player is holding a tile gameState.hand will be a nested object
+        if (gameState.hand !== undefined && gameState.board[x][y].value === 0) {
+          gameState.board[x][y] = { ...gameState.hand }; //shallow clone
+          gameState.hand = undefined; //empty hand after tile has been placed
+          updateGrid(); //update visuals
         }
+
         //if the user is not holding a tile allow them to pick up unlocked tiles
         else if (
-          tileSelected === false &&
-          gameState.board[i][j].lockedState !== true
+          gameState.hand === undefined &&
+          gameState.board[x][y].lockedState === undefined &&
+          gameState.board[x][y].value !== 0
         ) {
-          console.log(tile);
-          gameState.hand[tile.originalPosition] = "fixed";
-          gameState.board[i][j].value = 0;
-          gridCell.textContent = `${gridValue}`;
-          tileSelected = false;
-          updateHand();
+          gameState.rack[gameState.board[x][y].originalPosition] = {
+            ...gameState.board[x][y],
+          }; //shallow clone
+
+          gameState.board[x][y].value = 0;
+          updateRack();
           updateGrid();
         }
+        console.log(gameState);
       };
     }
   }
 }
 
-function makeHand() {
-  let handTbl = document.getElementById("hand");
-  let handRow = document.createElement("tr");
-  handRow.className = "row";
-  handTbl.appendChild(handRow);
-  for (let m = 0; m < 7; m++) {
-    let handCell = document.createElement("td");
-    handCell.id = ["h", m];
-    handCell.className = "hand-cell";
-    const tile = gameState.hand[m];
-    handCell.textContent = `${tile.value}`;
-    handRow.appendChild(handCell);
-    //user interaction (clicking functionality)
-    handCell.onclick = function () {
-      if (!tileSelected && tile.value != "") {
-        tileSelected = tile;
-        console.log(tileSelected);
-         gameState.hand[m].value = "";
-        
-        // handCell.textContent = `${gameState.hand[m].value}`;
-        // handCell.classList.add("empty");
-        updateHand();
-      }
-    };
-  }
-}
-
 function updateGrid() {
-  for (let i = 0; i < 9; i++) {
-    for (let j = 0; j < 9; j++) {
-      let gridCell = document.getElementById([i, j]);
-      const gridValue = gameState.board[i][j].value;
-      const lockedState = gameState.board[i][j].lockedState;
+  for (let x = 0; x < 9; x++) {
+    for (let y = 0; y < 9; y++) {
+      let gridCell = document.getElementById([x, y]);
+      const gridValue = gameState.board[x][y].value;
+      const locked = gameState.board[x][y].locked;
       gridCell.textContent = `${gridValue}`;
       if (gridValue === 0) {
         gridCell.classList.add("empty");
+        gridCell.classList.remove("tile-unlocked");
         gridCell.classList.remove("tile");
-        gridCell.classList.remove("tile-unlocked");
-      } else if (gridValue !== 0 && lockedState) {
+      } else if (gridValue !== 0 && locked) {
         gridCell.classList.add("tile-locked");
-        gridCell.classList.remove("empty");
         gridCell.classList.remove("tile-unlocked");
+        gridCell.classList.remove("empty");
       } else {
         gridCell.classList.add("tile-unlocked");
         gridCell.classList.remove("tile-locked");
@@ -109,18 +83,42 @@ function updateGrid() {
   }
 }
 
-function updateHand() {
+function makeRack() {
+  let rackTbl = document.getElementById("rack");
+  let rackRow = document.createElement("tr");
+  rackRow.className = "row";
+  rackTbl.appendChild(rackRow);
+  for (let m = 0; m < 7; m++) {
+    let rackCell = document.createElement("td");
+    rackCell.id = ["h", m];
+    rackCell.className = "rack-cell";
+    rackCell.textContent = `${gameState.rack[m].value}`;
+    rackRow.appendChild(rackCell);
+    //user interaction (clicking functionality)
+
+    rackCell.onclick = function () {
+      if (gameState.hand === undefined && gameState.rack[m].value != "") {
+        gameState.hand = { ...gameState.rack[m] };
+        gameState.rack[m].value = "";
+        updateRack();
+      }
+      console.log(gameState);
+    };
+  }
+}
+
+function updateRack() {
   for (let i = 0; i < 7; i++) {
-    let handCell = document.getElementById(["h", i]);
-    const handValue = gameState.hand[i].value;
-    handCell.textContent = `${handValue}`;
-    if (handValue === ""){
-        handCell.classList.add("empty");
+    let rackCell = document.getElementById(["h", i]);
+    const rackValue = gameState.rack[i].value;
+    rackCell.textContent = `${rackValue}`;
+    if (rackValue === "") {
+      rackCell.classList.add("empty");
     } else {
-        handCell.classList.remove("empty");
+      rackCell.classList.remove("empty");
     }
   }
 }
 
-makeHand();
 makeGrid();
+makeRack();
