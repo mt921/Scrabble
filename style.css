@@ -214,12 +214,14 @@ aside
 
 .cell.tile-unlocked
 {
+    cursor: pointer;
     background-color: lightblue;
     color: white;
 }
 
 .rack-cell
 {
+    cursor: pointer;
     aspect-ratio: 1/1;
     background-color: var(--tile-colour-1);
     color: white;
